@@ -23,6 +23,14 @@
       {
         "command": "rewer.commitMsg",
         "title": "Rewer: Generate Commit Message"
+      },
+      {
+        "command": "rewer.explainFile",
+        "title": "Rewer: Explain File"
+      },
+      {
+        "command": "rewer.dailyReport",
+        "title": "Rewer: Daily Report"
       }
     ]
   },

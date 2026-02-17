@@ -43,6 +43,50 @@ Body explaining what changed and why.
 
 ---
 
+### `rewer explain <file>`
+
+**Explain a file's purpose, logic, and key components.**
+
+Reads the specified file and sends its contents to Claude AI for a clear, structured explanation covering the file's purpose, key components, logic flow, and dependencies.
+
+**Usage:**
+
+```bash
+rewer explain src/index.ts
+```
+
+**Requires:** `ANTHROPIC_API_KEY` environment variable.
+
+---
+
+### `rewer daily`
+
+**Generate a daily report from today's branch activity.**
+
+Scans all local branches for commits made since midnight (excluding the default branch), sends the branch names to Claude AI to generate clean task titles, and outputs a formatted daily summary with the date, working hours, and completed tasks.
+
+**Usage:**
+
+```bash
+rewer daily
+```
+
+**Output format:**
+
+```
+📅 2026-02-17 – Monday | 09:30 – 18:45
+
+🚀 Completed Today
+✅ User Authentication API Integration
+✅ Profile Settings Page Implementation
+```
+
+A copy-friendly plain-text version is also printed below the styled output.
+
+**Requires:** `ANTHROPIC_API_KEY` environment variable.
+
+---
+
 ## VS Code Commands
 
 These commands are available via the Command Palette (`Cmd+Shift+P` / `Ctrl+Shift+P`).
@@ -54,3 +98,11 @@ Opens a terminal and runs `rewer -b <branch>` after prompting for a branch name.
 ### `Rewer: Generate Commit Message`
 
 Opens a terminal and runs `rewer commit --msg` to generate a commit message from your current changes.
+
+### `Rewer: Explain File`
+
+Explains the currently open file (or prompts for a file path) by running `rewer explain <file>` in a terminal.
+
+### `Rewer: Daily Report`
+
+Opens a terminal and runs `rewer daily` to generate a daily summary of completed branch work.

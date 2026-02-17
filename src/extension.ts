@@ -20,7 +20,37 @@ export function activate(context: vscode.ExtensionContext) {
 		terminal.sendText('rewer commit --msg');
 	});
 
-	context.subscriptions.push(reviewCommand, commitMsgCommand);
+	const explainFileCommand = vscode.commands.registerCommand('rewer.explainFile', async () => {
+		let filePath: string | undefined;
+
+		const activeEditor = vscode.window.activeTextEditor;
+		if (activeEditor) {
+			filePath = activeEditor.document.uri.fsPath;
+		}
+
+		if (!filePath) {
+			filePath = await vscode.window.showInputBox({
+				prompt: 'Enter the file path to explain',
+				placeHolder: 'e.g. src/index.ts'
+			});
+		}
+
+		if (!filePath) {
+			return;
+		}
+
+		const terminal = vscode.window.createTerminal('Rewer Explain');
+		terminal.show();
+		terminal.sendText(`rewer explain ${filePath}`);
+	});
+
+	const dailyReportCommand = vscode.commands.registerCommand('rewer.dailyReport', async () => {
+		const terminal = vscode.window.createTerminal('Rewer Daily');
+		terminal.show();
+		terminal.sendText('rewer daily');
+	});
+
+	context.subscriptions.push(reviewCommand, commitMsgCommand, explainFileCommand, dailyReportCommand);
 }
 
 export function deactivate() {}
