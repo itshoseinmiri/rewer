@@ -105,18 +105,10 @@ A copy-friendly plain-text version is also printed below the styled output.
 
 ### `rewer security-scan`
 
-Focused security audit of a branch or file. Scans for common vulnerabilities (injection, auth issues, data exposure, XSS, etc.) and reports findings ranked by severity from Critical to Low.
-
-**Scan a branch:**
+Scan changed files for security vulnerabilities before committing. Automatically detects all changed files (staged + unstaged), reads their contents, and reports findings ranked by severity from Critical to Low.
 
 ```bash
-rewer security-scan -b feature-login
-```
-
-**Scan a file:**
-
-```bash
-rewer security-scan --file src/api/handler.ts
+rewer security-scan
 ```
 
 ---
@@ -129,8 +121,7 @@ rewer security-scan --file src/api/handler.ts
 | `rewer commit --msg` | Generate a commit message |
 | `rewer explain <file>` | Explain a file |
 | `rewer daily` | Daily work report |
-| `rewer security-scan -b <branch>` | Security scan a branch |
-| `rewer security-scan --file <file>` | Security scan a file |
+| `rewer security-scan` | Security scan changed files |
 
 > All commands require the `ANTHROPIC_API_KEY` environment variable to be set.
 
@@ -148,7 +139,7 @@ To use as a VS Code extension during development:
 | **Rewer: Generate Commit Message** | Runs `rewer commit --msg` |
 | **Rewer: Explain File** | Explains the active file (or prompts for a path) |
 | **Rewer: Daily Report** | Runs `rewer daily` |
-| **Rewer: Security Scan** | Prompts to scan the active file or a branch |
+| **Rewer: Security Scan** | Scans changed files for vulnerabilities |
 
 ## Uninstall
 

@@ -51,53 +51,9 @@ export function activate(context: vscode.ExtensionContext) {
 	});
 
 	const securityScanCommand = vscode.commands.registerCommand('rewer.securityScan', async () => {
-		const mode = await vscode.window.showQuickPick(
-			[
-				{ label: 'Scan current file', description: 'Run security scan on the active file', value: 'file' },
-				{ label: 'Scan a branch', description: 'Run security scan on a branch diff', value: 'branch' },
-			],
-			{ placeHolder: 'What do you want to scan?' }
-		);
-
-		if (!mode) {
-			return;
-		}
-
 		const terminal = vscode.window.createTerminal('Rewer Security');
 		terminal.show();
-
-		if (mode.value === 'file') {
-			let filePath: string | undefined;
-
-			const activeEditor = vscode.window.activeTextEditor;
-			if (activeEditor) {
-				filePath = activeEditor.document.uri.fsPath;
-			}
-
-			if (!filePath) {
-				filePath = await vscode.window.showInputBox({
-					prompt: 'Enter the file path to scan',
-					placeHolder: 'e.g. src/api/handler.ts'
-				});
-			}
-
-			if (!filePath) {
-				return;
-			}
-
-			terminal.sendText(`rewer security-scan --file ${filePath}`);
-		} else {
-			const branch = await vscode.window.showInputBox({
-				prompt: 'Enter the branch name to scan',
-				placeHolder: 'e.g. feature-login'
-			});
-
-			if (!branch) {
-				return;
-			}
-
-			terminal.sendText(`rewer security-scan -b ${branch}`);
-		}
+		terminal.sendText('rewer security-scan');
 	});
 
 	context.subscriptions.push(reviewCommand, commitMsgCommand, explainFileCommand, dailyReportCommand, securityScanCommand);

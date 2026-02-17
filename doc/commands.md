@@ -89,15 +89,14 @@ A copy-friendly plain-text version is also printed below the styled output.
 
 ### `rewer security-scan`
 
-**Focused security audit of a branch or file.**
+**Scan changed files for security vulnerabilities before committing.**
 
-Scans the specified target for common security vulnerabilities (injection, auth issues, data exposure, etc.) and reports findings with severity levels ordered from Critical to Low.
+Automatically detects all changed files (staged + unstaged) on the current branch, reads their contents, and sends them to Claude AI for a focused security audit. Reports findings with severity levels ordered from Critical to Low.
 
 **Usage:**
 
 ```bash
-rewer security-scan -b feature-login
-rewer security-scan --file src/api/handler.ts
+rewer security-scan
 ```
 
 **Requires:** `ANTHROPIC_API_KEY` environment variable.
@@ -126,4 +125,4 @@ Opens a terminal and runs `rewer daily` to generate a daily summary of completed
 
 ### `Rewer: Security Scan`
 
-Prompts to scan either the active file or a branch, then runs the corresponding `rewer security-scan` command in a terminal.
+Runs `rewer security-scan` to scan all changed files for security vulnerabilities before committing.
