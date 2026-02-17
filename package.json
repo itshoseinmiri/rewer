@@ -31,6 +31,10 @@
       {
         "command": "rewer.dailyReport",
         "title": "Rewer: Daily Report"
+      },
+      {
+        "command": "rewer.securityScan",
+        "title": "Rewer: Security Scan"
       }
     ]
   },

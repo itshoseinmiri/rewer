@@ -87,6 +87,23 @@ A copy-friendly plain-text version is also printed below the styled output.
 
 ---
 
+### `rewer security-scan`
+
+**Focused security audit of a branch or file.**
+
+Scans the specified target for common security vulnerabilities (injection, auth issues, data exposure, etc.) and reports findings with severity levels ordered from Critical to Low.
+
+**Usage:**
+
+```bash
+rewer security-scan -b feature-login
+rewer security-scan --file src/api/handler.ts
+```
+
+**Requires:** `ANTHROPIC_API_KEY` environment variable.
+
+---
+
 ## VS Code Commands
 
 These commands are available via the Command Palette (`Cmd+Shift+P` / `Ctrl+Shift+P`).
@@ -106,3 +123,7 @@ Explains the currently open file (or prompts for a file path) by running `rewer 
 ### `Rewer: Daily Report`
 
 Opens a terminal and runs `rewer daily` to generate a daily summary of completed branch work.
+
+### `Rewer: Security Scan`
+
+Prompts to scan either the active file or a branch, then runs the corresponding `rewer security-scan` command in a terminal.

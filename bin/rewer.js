@@ -5,6 +5,7 @@ const reviewBranch = require('../lib/commands/review');
 const generateCommitMsg = require('../lib/commands/commit');
 const explainFile = require('../lib/commands/explain');
 const dailyReport = require('../lib/commands/daily');
+const securityScan = require('../lib/commands/security-scan');
 
 const args = process.argv.slice(2);
 const command = args[0];
@@ -15,6 +16,8 @@ function showUsage() {
   console.log('  rewer commit --msg         Generate a commit message from staged changes');
   console.log('  rewer explain <file>       Explain a file\'s purpose, logic, and key components');
   console.log('  rewer daily                Generate a daily report from today\'s branch activity');
+  console.log('  rewer security-scan -b <branch>   Scan branch changes for vulnerabilities');
+  console.log('  rewer security-scan --file <file>  Scan a single file for vulnerabilities');
   process.exit(1);
 }
 
@@ -28,6 +31,9 @@ if (command === 'commit' && args.includes('--msg')) {
 } else if (command === 'daily') {
   requireApiKey();
   dailyReport();
+} else if (command === 'security-scan') {
+  requireApiKey();
+  securityScan(args);
 } else if (args.includes('-b')) {
   requireApiKey();
   reviewBranch(args);
